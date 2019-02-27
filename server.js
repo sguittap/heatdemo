@@ -1,12 +1,22 @@
 const express = require('express');
 const app = express();
-//MapContainer from './MapContainer/map';
-
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const Data = require('./controllers/data')
+const router = express.Router();
+const cors = require('cors')
 require ('./db/db')
 
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+app.use(cors());
+
+
+
 //landing page
-//app.use('/api/v1/heatmap/', MapContainer);
+
 
 const port =process.env.PORT || 3000
 app.listen(port);
