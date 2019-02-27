@@ -10,12 +10,15 @@ const data = [{ x: 40, y: 40, value: 3}, { x: 50, y: 50, value: 2},];
 export default class MapContainer extends Component{
   state = {
     //durham, NC
+    data:[],
     lat: 35.9940,
     lng: -78.8986,
     zoom: 5,
   }
   
   componentDidMount(){
+    this.getData();
+
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('this is your position -->',{position})
       this.setState({
@@ -24,7 +27,13 @@ export default class MapContainer extends Component{
         zoom: 13
       })
     });
-  }
+  };
+
+  getData = () =>{
+    fetch("http://localhost:3001/api/getData")
+      .then(data => data.json())
+      .then(res => this.setState({ data: res.data }));
+  };
 
   render() {
     const position = [this.state.lat, this.state.lng]
