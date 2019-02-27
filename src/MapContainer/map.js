@@ -2,6 +2,8 @@ import React from 'react';
 import './styles.css';
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import '../App.css';
+import 'leaflet/dist/leaflet.css'
+
 
 
 const ReactHeatmap = require('react-heatmap');
